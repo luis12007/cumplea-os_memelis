@@ -1,0 +1,16 @@
+{
+  "name": "cumpleanos-memelis",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Página de feliz cumpleaños para Memelis",
+  "scripts": {
+    "start": "serve . -l ${PORT:-3000}",
+    "dev": "serve . -l 3000"
+  },
+  "dependencies": {
+    "serve": "14.2.4"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

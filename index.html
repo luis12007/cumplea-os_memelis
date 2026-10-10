@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Feliz Cumpleaños, Memelis</title>
+<meta name="theme-color" content="#ffe6ee">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,700;1,500;1,700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="locked">
+
+<!-- Kitty reutilizable -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="kitty" viewBox="0 0 220 180">
+      <g stroke="#3b2730" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M34 82 L30 14 L92 46 Z" fill="#fff"/>
+        <path d="M186 82 L190 14 L128 46 Z" fill="#fff"/>
+        <ellipse cx="110" cy="104" rx="96" ry="70" fill="#fff"/>
+        <ellipse cx="70" cy="108" rx="7.5" ry="10.5" fill="#3b2730" stroke="none"/>
+        <ellipse cx="150" cy="108" rx="7.5" ry="10.5" fill="#3b2730" stroke="none"/>
+        <ellipse cx="110" cy="124" rx="10" ry="7" fill="#f7c948"/>
+        <path d="M14 98 L44 104 M10 118 L42 118 M14 138 L44 130" fill="none"/>
+        <path d="M206 98 L176 104 M210 118 L178 118 M206 138 L176 130" fill="none"/>
+        <ellipse cx="50" cy="134" rx="12" ry="7" fill="#ffc4d6" stroke="none" opacity=".8"/>
+        <ellipse cx="170" cy="134" rx="12" ry="7" fill="#ffc4d6" stroke="none" opacity=".8"/>
+        <path d="M168 40 C150 6 124 14 132 44 C126 72 152 72 168 50 Z" fill="#ff6f9f"/>
+        <path d="M172 40 C190 6 218 18 206 46 C214 72 186 70 172 50 Z" fill="#ff6f9f"/>
+        <circle cx="170" cy="46" r="11" fill="#ff8fb3"/>
+      </g>
+    </symbol>
+    <symbol id="heart" viewBox="0 0 32 29">
+      <path d="M16 28.5S0 18.6 0 8.6C0 3.8 3.8 0 8.4 0c3.1 0 5.9 1.7 7.6 4.3C17.7 1.7 20.5 0 23.6 0 28.2 0 32 3.8 32 8.6c0 10-16 19.9-16 19.9z"/>
+    </symbol>
+    <symbol id="paw" viewBox="0 0 64 64">
+      <ellipse cx="32" cy="42" rx="15" ry="12"/><ellipse cx="14" cy="26" rx="7" ry="9"/><ellipse cx="26" cy="14" rx="7" ry="9"/><ellipse cx="40" cy="14" rx="7" ry="9"/><ellipse cx="51" cy="26" rx="7" ry="9"/>
+    </symbol>
+  </defs>
+</svg>
+
+<canvas id="ambient" aria-hidden="true"></canvas>
+<div id="progress" aria-hidden="true"></div>
+<button id="musicBtn" class="music-btn" hidden aria-label="Música">♫</button>
+<audio id="song" src="Recursos/cancion.mp3" loop preload="auto"></audio>
+
+<!-- ========== SOBRE DE BIENVENIDA ========== -->
+<div id="intro">
+  <div class="intro-glow"></div>
+  <p class="intro-top">Tienes una sorpresa</p>
+  <button class="envelope" id="envelope" aria-label="Abrir sobre">
+    <span class="env-back"></span>
+    <span class="env-letter">
+      <svg class="env-kitty"><use href="#kitty"/></svg>
+      <span class="env-letter-text">Para la niña<br>más bonita</span>
+    </span>
+    <span class="env-front"></span>
+    <span class="env-flap"></span>
+    <span class="env-seal"><svg><use href="#heart"/></svg></span>
+  </button>
+  <p class="intro-hint">Toca el sobre para abrirlo <span>💌</span></p>
+</div>
+
+<main>
+
+<!-- ========== HERO ========== -->
+<section class="hero" id="hero">
+  <div class="bunting" id="bunting"></div>
+  <div class="balloons" id="balloons"></div>
+  <div class="hero-photos">
+    <figure class="polaroid hp hp1"><img data-i="10" alt=""><figcaption>dulce como tú</figcaption></figure>
+    <figure class="polaroid hp hp2"><img data-i="24" alt=""><figcaption>mi niña</figcaption></figure>
+    <figure class="polaroid hp hp3"><img data-i="49" alt=""><figcaption>esa sonrisa ♡</figcaption></figure>
+  </div>
+  <div class="hero-text">
+    <p class="hero-feliz">feliz</p>
+    <h1 class="hero-title">Cumpleaños</h1>
+    <p class="hero-name"><span>Memelis</span></p>
+    <p class="hero-sub">Hoy el mundo es un poquito más rosa porque es tu día</p>
+  </div>
+  <div class="hero-kitty"><svg><use href="#kitty"/></svg></div>
+  <div class="scroll-hint"><span></span>desliza</div>
+</section>
+
+<!-- ========== PILA DE FOTOS ========== -->
+<section class="pile" id="pile">
+  <div class="pile-head">
+    <p class="kicker">capítulo uno</p>
+    <h2 class="title">Hoy celebramos<br>a la más bonita</h2>
+  </div>
+  <div class="pile-stage" id="pileStage"></div>
+  <div class="pile-sparkles"></div>
+</section>
+
+<!-- ========== PALABRAS ========== -->
+<section class="words" id="words">
+  <svg class="words-heart"><use href="#heart"/></svg>
+  <p class="words-text" id="wordsText">Gracias por pintar mis días de rosa, por esa risa que lo cura todo y por esos abrazos que se sienten como volver a casa. Hoy es tu día, y quiero que sepas que eres lo más bonito que me ha pasado en la vida.</p>
+</section>
+
+<!-- ========== TENDEDERO HORIZONTAL ========== -->
+<section class="line" id="clothesline">
+  <div class="line-head">
+    <p class="kicker">capítulo dos</p>
+    <h2 class="title">Nuestros momentitos</h2>
+  </div>
+  <div class="line-track" id="lineTrack">
+    <svg class="rope" preserveAspectRatio="none" viewBox="0 0 100 10"><path d="M0 2 Q 25 9 50 4 T 100 3" /></svg>
+  </div>
+</section>
+
+<!-- ========== CORAZÓN ========== -->
+<section class="heart-sec" id="heartSec">
+  <div class="heart-photo" style="--hs:4%"><img data-i="17" alt=""></div>
+  <div class="heart-copy">
+    <p class="script-xl">Contigo todo florece</p>
+    <p class="heart-small">como los girasoles buscan el sol, yo siempre te busco a ti 🌻</p>
+  </div>
+</section>
+
+<!-- ========== MURO PARALLAX ========== -->
+<section class="wall" id="wall">
+  <div class="wall-head reveal">
+    <p class="kicker">capítulo tres</p>
+    <h2 class="title">Cada versión de ti<br>me enamora</h2>
+    <p class="lead">Con el cabello rojo, negro o naranja; en la playa, en la montaña o en el carro. Siempre tú, siempre preciosa.</p>
+  </div>
+  <div class="wall-cols" id="wallCols"></div>
+</section>
+
+<!-- ========== VIDEOS ========== -->
+<section class="videos" id="videos">
+  <div class="reveal">
+    <p class="kicker">capítulo cuatro</p>
+    <h2 class="title">Recuerdos en movimiento</h2>
+    <p class="lead">Toca un video para escucharlo 🔊</p>
+  </div>
+  <div class="video-row">
+    <figure class="vframe reveal"><span class="vbow"></span><video src="Recursos/WhatsApp%20Video%202026-10-10%20at%205.21.24%20PM.mp4" muted loop playsinline preload="metadata"></video><span class="vsound">🔇</span></figure>
+    <figure class="vframe reveal"><span class="vbow"></span><video src="Recursos/WhatsApp%20Video%202026-10-10%20at%205.25.51%20PM.mp4" muted loop playsinline preload="metadata"></video><span class="vsound">🔇</span></figure>
+    <figure class="vframe reveal"><span class="vbow"></span><video src="Recursos/WhatsApp%20Video%202026-10-10%20at%205.21.24%20PM%202.mp4" muted loop playsinline preload="metadata"></video><span class="vsound">🔇</span></figure>
+  </div>
+</section>
+
+<!-- ========== PASTEL ========== -->
+<section class="cake-sec" id="cakeSec">
+  <div class="reveal">
+    <p class="kicker">un momento especial</p>
+    <h2 class="title">Pide un deseo</h2>
+    <p class="lead">Cierra los ojitos, piensa en algo bonito… y sopla las velitas</p>
+  </div>
+  <div class="cake" id="cake">
+    <div class="candles">
+      <div class="candle"><i class="flame"></i><i class="smoke"></i></div>
+      <div class="candle"><i class="flame"></i><i class="smoke"></i></div>
+      <div class="candle"><i class="flame"></i><i class="smoke"></i></div>
+    </div>
+    <div class="tier tier-top"><span class="drip"></span></div>
+    <div class="tier tier-mid"><span class="drip"></span><span class="sprinkles"></span></div>
+    <div class="tier tier-bot"><span class="drip"></span><span class="sprinkles"></span></div>
+    <div class="plate"></div>
+  </div>
+  <button class="btn" id="blowBtn">Soplar las velitas 🌬️</button>
+  <p class="wish" id="wish">¡Que se cumplan todos tus deseos, mi amor! ✨</p>
+</section>
+
+<!-- ========== MASCOTAS ========== -->
+<section class="pets" id="pets">
+  <div class="paws" aria-hidden="true"></div>
+  <div class="pets-inner">
+    <div class="pet-cards" id="petCards">
+      <figure class="pet-card" style="--c:#ffd1dc">
+        <span class="pet-tag">la más peludita</span>
+        <div class="pet-img"><img data-i="22" alt="La Flofo"></div>
+        <figcaption>La Flofo</figcaption>
+      </figure>
+      <figure class="pet-card" style="--c:#d8ead2">
+        <span class="pet-tag">el más consentido</span>
+        <div class="pet-img"><img data-i="60" alt="El Chiquitín"></div>
+        <figcaption>El Chiquitín</figcaption>
+      </figure>
+      <figure class="pet-card" style="--c:#f3e1c7">
+        <span class="pet-tag">la reina de la casa</span>
+        <div class="pet-img"><img data-i="48" alt="La niña Catis"></div>
+        <figcaption>La niña Catis</figcaption>
+      </figure>
+    </div>
+    <div class="pets-copy reveal">
+      <p class="kicker">un mensajito muy especial</p>
+      <h2 class="title">La Flofo, el Chiquitín y la niña Catis</h2>
+      <p class="pets-say">te desean un <strong>feliz cumpleaños</strong> 💗</p>
+      <div class="msgs">
+        <div class="msg" style="--c:#ffd1dc">
+          <p class="msg-from">🐶 De la Flofo</p>
+          <p>¡Feliz cumple, mi humana favorita! Gracias por tantos cariñitos y por dejarme dormir cerquita de ti. Hoy te mando mil lengüetazos y mi colita más feliz.</p>
+        </div>
+        <div class="msg" style="--c:#d8ead2">
+          <p class="msg-from">🐾 Del Chiquitín</p>
+          <p>¡Feliz cumpleaños! Eres la que más me consiente y siempre me guarda un pedacito. Hoy prometo portarme bien solo por ti… bueno, lo voy a intentar.</p>
+        </div>
+        <div class="msg" style="--c:#f3e1c7">
+          <p class="msg-from">💐 De la niña Catis</p>
+          <p>Feliz cumpleaños, mi niña. Que este nuevo año te llene de salud, bendiciones y mucha felicidad. Eres una mujer maravillosa, llenas de alegría a todos los que te rodean y te quiero muchísimo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== REGALO ========== -->
+<section class="gift-sec" id="giftSec">
+  <div class="gift-head reveal">
+    <p class="kicker">el final más bonito</p>
+    <h2 class="title">Selecciona tu regalo</h2>
+    <p class="lead" id="giftLead">Toca la cajita para abrirla 🎁</p>
+  </div>
+  <div class="gift-stage">
+    <div class="rays" id="rays"><i></i></div>
+    <button class="gift" id="gift" aria-label="Abrir regalo">
+      <span class="gift-lid"><span class="bow"><i></i><i></i><b></b></span></span>
+      <span class="gift-box"></span>
+      <span class="gift-tag">para ti ♡</span>
+    </button>
+  </div>
+  <div class="gift-cards" id="giftCards"></div>
+  <div class="finale" id="finale">
+    <svg class="finale-kitty"><use href="#kitty"/></svg>
+    <p class="script-xl">¡Todos son tuyos!</p>
+    <p class="lead">Feliz cumpleaños, mi amor. Que este año te traiga tantas sonrisas como las que tú me regalas cada día. Te amo infinito.</p>
+    <p class="sign">Con todo mi amor 💗</p>
+    <button class="btn" id="againBtn">Más confeti 🎉</button>
+  </div>
+</section>
+
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
